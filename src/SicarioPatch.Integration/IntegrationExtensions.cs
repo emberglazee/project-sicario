@@ -22,8 +22,13 @@ namespace SicarioPatch.Integration
         }
 
         public static string GetVirtualPath(this Record r, PakFile pakFile) {
-            return Path.Join(pakFile.MountPoint, r.FileName)
-                .Replace(string.Join("/", new[] {"..", "..", ".."}), string.Empty).TrimStart('/');
+            var fullPath = r.FileName;
+            if (!fullPath.StartsWith(pakFile.MountPoint)) {
+                fullPath = Path.Join(pakFile.MountPoint, r.FileName);
+            }
+            return fullPath.Replace("\\", "/")
+                .Replace("../", string.Empty)
+                .TrimStart('/');
         }
 
         internal static string TrimPathTo(this string path, string pathSegment, string separator = "/") {

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../SicarioPatch.shared.props" />
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -13,12 +13,12 @@
     <PackageReference Include="LiteDB" Version="5.0.10" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="SemanticVersioning" Version="2.0.0" />
-    <PackageReference Include="UnPak.Core" Version="0.0.0-preview.0.14" />
+<!--    <PackageReference Include="UnPak.Core" Version="0.0.0-preview.0.14" />-->
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SicarioPatch.Core\SicarioPatch.Core.csproj" />
-<!--    <ProjectReference Include="..\..\..\UnPak\src\UnPak.Core\UnPak.Core.csproj" />-->
+    <ProjectReference Include="..\..\unpak-source\src\UnPak.Core\UnPak.Core.csproj" />
   </ItemGroup>
 
 </Project>

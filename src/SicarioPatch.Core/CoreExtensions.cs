@@ -15,12 +15,6 @@ namespace SicarioPatch.Core
                 : path;
         }
 
-        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(
-            this IEnumerable<KeyValuePair<TKey, TValue>> pairs)
-        {
-            return pairs.ToDictionary(k => k.Key, v => v.Value);
-        }
-
         public static IEnumerable<Patch> GetFilePatches(this WingmanMod mod)
         {
             var allPatches = mod.FilePatches.SelectMany(fp => fp.Value).SelectMany(ps => ps.Patches);

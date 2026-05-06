@@ -50,9 +50,8 @@ namespace SicarioPatch.Integration
                 var file = reader.ReadFile();
                 return file?.FileStream == null ? null : file;
             }
-            catch (Exception e) {
-                Console.WriteLine(e);
-                //ignored
+            catch (Exception ex) {
+                Console.WriteLine($"[MergeLoader] Error reading {pakFileInfo.Name}: {ex.Message}");
             }
 
             return null;
@@ -77,8 +76,7 @@ namespace SicarioPatch.Integration
                         builtMods.Add(pakFileInfo.FullName, embed.Request);
                     }
                 }
-                catch (Exception e) {
-                    Console.WriteLine(e);
+                catch (Exception) {
                     //ignored
                 }
             }
@@ -102,8 +100,7 @@ namespace SicarioPatch.Integration
                         builtMods.Add(pakFileInfo.FullName, embed);
                     }
                 }
-                catch (Exception e) {
-                    Console.WriteLine(e);
+                catch (Exception) {
                     //ignored
                 }
             }

@@ -28,8 +28,8 @@ namespace SicarioPatch.Integration
                         var fs = new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                         var reader = _pakFileProvider.GetReader(fs);
                         var pakFile = reader.ReadFile();
-                        var addSkins = pakFile.Records.Select(a => a.GetVirtualPath(pakFile)).Where(r =>
-                            r.StartsWith("ProjectWingman/Content/Assets/Skins"));
+                        if (pakFile == null) continue;
+                        var addSkins = pakFile.Records.Select(a => a.GetVirtualPath(pakFile)).Where(r => r.StartsWith("ProjectWingman/Content/Assets/Skins"));
                         additionalSkins.AddRange(addSkins);
                     }
                     catch {

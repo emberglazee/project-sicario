@@ -12,7 +12,7 @@ namespace SicarioPatch.Core
         {
             var assemblyName = Assembly.GetExecutingAssembly().GetName();
             var version = assemblyName?.Version?.ToString();
-            _version = version ?? "0.1.0";
+            _version = version ?? "0.3.0";
         }
         public (string Name, string Version) GetAppInfo()
         {

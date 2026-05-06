@@ -120,8 +120,12 @@ namespace SicarioPatch.Loader
 
             var paksRoot = Path.Join(settings.InstallPath, "ProjectWingman", "Content", "Paks");
 
+            var defaultPakPath = Path.Join(paksRoot, "ProjectWingman-WindowsNoEditor.pak");
+            if (!File.Exists(defaultPakPath)) {
+                defaultPakPath = Path.Join(paksRoot, "pakchunk0-WindowsNoEditor.pak");
+            }
             _config["GamePath"] = settings.InstallPath;
-            _config["GamePakPath"] = Path.Join(paksRoot, "ProjectWingman-WindowsNoEditor.pak");
+            _config["GamePakPath"] = defaultPakPath;
             
             _logger.LogInformation($"Running engine version {_engineInfo.GetEngineVersion() ?? "unknown"}");
 
@@ -151,6 +155,11 @@ namespace SicarioPatch.Loader
             LogConsole($"Final mod will be built with [dodgerblue2]{inputParameterList.Keys.Count}[/] parameters");
 
             var modList = components.GetMods();
+
+            if (modList.Count == 0) {
+                LogConsole("[orange3][bold]No mods or presets found to build![/][/]");
+                return 0;
+            }
 
             LogConsole($"[bold darkblue]Queuing mod build with {modList.Count} mods[/]");
             

@@ -1,6 +1,9 @@
 [submodule "docs/themes/docsy"]
-	path = docs/themes/docsy
-	url = https://github.com/google/docsy.git
+        path = docs/themes/docsy
+        url = https://github.com/google/docsy.git
 [submodule "lib/UAssetAPI"]
-	path = lib/UAssetAPI
-	url = https://github.com/agc93/UAssetAPI.git
+        path = lib/UAssetAPI
+        url = https://github.com/emberglazee/UAssetAPI.git
+[submodule "unpak-source"]
+	path = unpak-source
+	url = https://github.com/emberglazee/unpak.git

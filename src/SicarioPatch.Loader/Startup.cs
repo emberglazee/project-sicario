@@ -67,8 +67,10 @@ namespace SicarioPatch.Loader
         internal static IServiceCollection AddUnPak(this IServiceCollection services) {
             return services.AddSingleton<IPakFormat, PakVersion3Format>()
                 .AddSingleton<IPakFormat, PakVersion8Format>()
+                .AddSingleton<IPakFormat, PakVersion11Format>()
                 .AddSingleton<IFooterLayout, DefaultFooterLayout>()
                 .AddSingleton<IFooterLayout, PaddedFooterLayout>()
+                .AddSingleton<IFooterLayout, PakVersion11FooterLayout>()
                 .AddSingleton<IHashProvider, NativeHashProvider>()
                 .AddSingleton<PakFileProvider>();
         }

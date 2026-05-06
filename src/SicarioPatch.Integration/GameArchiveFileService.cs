@@ -52,9 +52,14 @@ namespace SicarioPatch.Integration
                     var fs = new FileStream(gamePak.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                     var reader = _pakFileProvider.GetReader(fs);
                     var pakFile = reader.ReadFile();
-                    var outputFile = pakFile.FirstOrDefault(r =>
-                        r.FileName.ToLower().TrimStart('/') == filePath.ToLower().TrimStart('/')) ?? pakFile.FirstOrDefault(r =>
-                        Path.GetFileName(r.FileName).ToLower().TrimStart('/') == filePath.ToLower().TrimStart('/'));
+                    
+                    var matchPath = filePath.ToLower().TrimStart('/');
+                    var outputFile = pakFile.FirstOrDefault(r => r.GetVirtualPath(pakFile).Replace('\\', '/').ToLower().TrimStart('/') == matchPath);
+                    
+                    if (outputFile == null) {
+                        outputFile = pakFile.FirstOrDefault(r => Path.GetFileName(r.FileName).ToLower().TrimStart('/') == matchPath);
+                    }
+
                     var unpacked = outputFile?.Unpack(fs, WorkingDirectory);
                     hash = pakFile.FileFooter.IndexHash;
                     return unpacked;
